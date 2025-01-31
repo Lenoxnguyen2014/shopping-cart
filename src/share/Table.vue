@@ -10,12 +10,7 @@
                 <!-- create slot to pass in products table -->
                 <slot :name="`column${index}`" :entity="entity"></slot>
             </td>
-            <td>
-                <button>Add</button>
-            </td>
-            <td>
-                <button>Remove</button>
-            </td>
+            <td><button @click="handleAdd(entity)">Add</button></td>
         </tr>
     </table>
 </template>
@@ -32,6 +27,14 @@
         listOfItems: Array<{}>
         }
     )
+    const emit = defineEmits(['add-item'])
+
+    const handleAdd = (entity: Object) => {
+      if (entity) {
+        emit('add-item',  entity )
+      }
+    }
+
 </script>
 
 <style>
