@@ -1,10 +1,9 @@
 <template>
 
         <div class="list-product">
-            <Table :list-of-items="list_of_prducts" 
+            <Table :list-of-items="listOfProducts" 
                    :headers="headers"
                    @add-item="handleAddItem"
-                   @remove-item="handleRemoveItem"
                 >
                 <template #column0="{ entity }">
                     {{ entity.isbn }}
@@ -23,22 +22,23 @@
     export default {
         name: "Products"
     }
-    import Vue, { ref } from 'vue'
-    import { generateProducts } from '../faker/products'
+    import { watch, ref, computed } from 'vue'
     import Table from '../share/Table.vue'
-
+    import { useCartStore } from '../stores/cartStore'
 </script>
 
 <script setup lang="ts">
     
-    const list_of_prducts = generateProducts(10)
     const headers = ['isbn', 'name', 'price']
-    const pendingList = ref([])
+    const cartStore = useCartStore()
     
     // can use pinia to create a global store
     const handleAddItem = (entity: object) => {
-        pendingList.value.push(entity)
+        cartStore.addItem(entity)
     }
+    const listOfProducts = computed(() => cartStore.itemList);
+
+    
 
 </script>
 
