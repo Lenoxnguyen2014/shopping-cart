@@ -1,5 +1,5 @@
 <template>
-    <div v-if="showCard" class="cart">
+    <div v-if="props.openCart" class="cart">
        <h3> My Shopping Cart </h3>
        <div v-if="updatedPendingList.length > 0">
       <ul>
@@ -19,7 +19,7 @@
     export default {
         name: "Cart"
     }
-    import Vue, { computed, ref, watch } from 'vue'
+    import {  ref, watch } from 'vue'
     import { useCartStore } from '../stores/cartStore';
 </script>
 
@@ -31,7 +31,6 @@
 
     const cartStore = useCartStore()
     const updatedPendingList = ref([...cartStore.pendingList]) 
-    const showCard = ref(true)
 
     const checkout = () => {
         console.log('success')

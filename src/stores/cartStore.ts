@@ -23,7 +23,6 @@ export const useCartStore = defineStore('cart', {
 
             // update itemList
             this.itemList = this.itemList.filter((prod) => prod.isbn != item.isbn)
-            console.log(this.itemList)
         },
 
         removeItem(item:Product){
@@ -40,7 +39,6 @@ export const useCartStore = defineStore('cart', {
     },
     getters: {
         totalPrice(state){
-            
             return state.pendingList.reduce((total, item) => total + parseFloat(item.price), 0);
         }
 
