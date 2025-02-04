@@ -3,7 +3,7 @@
         <h1>Expensive Shopping List</h1>
     </div>
     <div class="navbar-action">
-        <FancyButton @click="openCard()" :model-value="showCart">
+        <FancyButton @click="openCart()" :model-value="showCart">
             <p v-if="showCart">Close</p>
             <p v-else>showCard</p>
         </FancyButton>
@@ -22,14 +22,14 @@
     const showCart = ref(false)
 
     const emit = defineEmits<{
-        (e: 'open-card', showCart: boolean): void
+        (e: 'open-cart', showCart: boolean): void
     
     }>()
 
 
-    const openCard = () => {
+    const openCart = () => {
         showCart.value = !showCart.value
-        emit('open-card', showCart.value)
+        emit('open-cart', showCart.value)
     }
 
 
